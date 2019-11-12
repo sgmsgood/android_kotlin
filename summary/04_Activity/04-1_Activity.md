@@ -59,8 +59,10 @@
         }    
     }
     ```
-    4. 새로운 액티비티에서 응답보내기</br>
+4. 새로운 액티비티에서 응답보내기</br>
+    </t>: putExtra(key, value)
     </t>: 새로운 액티비티가 보이고 그 안에 들어있는 버튼을 누르면 setResult() 메서드로 응답을 보냄
+    
     ```kotlin
      class MenuActivity : AppCompatActivity() {
 
