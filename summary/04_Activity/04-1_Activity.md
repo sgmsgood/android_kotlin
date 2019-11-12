@@ -60,7 +60,7 @@
     }
     ```
 4. 새로운 액티비티에서 응답보내기</br>
-    </t>: putExtra(key, value)
+    </t>: putExtra(key, value) </br>
     </t>: 새로운 액티비티가 보이고 그 안에 들어있는 버튼을 누르면 setResult() 메서드로 응답을 보냄
     
     ```kotlin
@@ -80,7 +80,7 @@
         }
     }
     ```
-    5. 응답처리하기</br>
+5. 응답처리하기</br>
     </t>: 메인 액티비티에서 onActivityResult() 메서드를 재정의하여 새로 띄웠던 액티비티에서 보내오는 응답을 처리합니다.
         * onActivityResult (requestCode: Int, resultCode: Int, data: Intent?) </br>
         </t> : MenuActivity로부터 받은 응답을 처리하는 메서드</br>
