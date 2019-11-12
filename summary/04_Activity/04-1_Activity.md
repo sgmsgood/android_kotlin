@@ -59,8 +59,10 @@
         }    
     }
     ```
-    4. 새로운 액티비티에서 응답보내기</br>
+4. 새로운 액티비티에서 응답보내기</br>
+    </t>: putExtra(key, value) </br>
     </t>: 새로운 액티비티가 보이고 그 안에 들어있는 버튼을 누르면 setResult() 메서드로 응답을 보냄
+    
     ```kotlin
      class MenuActivity : AppCompatActivity() {
 
@@ -78,15 +80,16 @@
         }
     }
     ```
-    5. 응답처리하기</br>
-    </t>: 메인 액티비티에서 onActivityResult() 메서드를 재정의하여 새로 띄웠던 액티비티에서 보내오는 응답을 처리합니다.
+5. 응답처리하기</br>
+    </t>: 메인 액티비티에서 onActivityResult() 메서드를 재정의하여 새로 띄웠던 액티비티에서 보내오는 응답을 처리함. </br>
         * onActivityResult (requestCode: Int, resultCode: Int, data: Intent?) </br>
         </t> : MenuActivity로부터 받은 응답을 처리하는 메서드</br>
         </t> (새로 띄웠던 MenuActivity가 응답을 보내오면 그 응답을 처리하는 역할)</br>
-        </t> - 첫 번째 인자값: 액티비티를 처음 띄울 때 전달했던 요청 코드 (101) </br> </t> - 두 번째 인자값: 새 액티비티로부터 전달된 코드 </br>
+        </t> - 첫 번째 인자값: 액티비티를 처음 띄울 때 전달했던 요청 코드 (101) </br> 
+        </t> - 두 번째 인자값: 새 액티비티로부터 전달된 코드 </br>
         </t> (새 액티비티에서 처리한 결과가 정상인지 아닌지 구분하는데 사용 </br>
         </t>  Ex) Activity.RESULT_OK)</br>
-        </t> - 세 번째 인자값: 새 액티티로부터 전달받은 인텐트 값 </br>
+        </t> - 세 번째 인자값: 새 액티비티로부터 전달받은 인텐트 값 </br>
     ```kotlin
         // MenuActivity로부터 받은 응답을 처리하는 메서드
         override fun onActivityResult(
