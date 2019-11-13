@@ -32,6 +32,21 @@
          ![FLAG_ACTIVITY_NO_HISTORY](https://github.com/sgmsgood/android_kotlin/blob/master/img/04_activity/FLAG_ACTIVITY_NO_HISTORY.png?raw=true)</br>
          
     3. FLAG_ACTIVITY_CLEAR_TOP</br>
+    </t>: 알람 이벤트가 발생하여 한 번만 알림 화면을 보여주고 싶을 때 사용</br>
+    </t>: 처음 이후에 발생한 액티비티가 스택에 추가되지 않음</br>
+        -> [back]키를 누르면 언제나 맨 처음의 액티비티가 바로 보임 </br>
+
+         ![FLAG_ACTIVITY_NO_HISTORY](https://github.com/sgmsgood/android_kotlin/blob/master/img/04_activity/FLAG_ACTIVITY_NO_HISTORY.png?raw=true)</br>
+         
+    3. FLAG_ACTIVITY_CLEAR_TOP</br>
+    </t>: 이 액티비티 위에 있는 모든 액티비티를 모두 종료함 </br>
+    </t>: 홈 화면과 같이 무엇보다 우선 시 되어야 하는 액티비티의 경우 사용</br>
+         ![FLAG_ACTIVITY_SINGLE_TOP](https://github.com/sgmsgood/android_kotlin/blob/master/img/04_activity/FLAG_ACTIVITY_SINGLE_TOP.png?raw=true) </br>
+
+--- 
+</br>
+
+# 2. 부가데이터 
 
 
 
