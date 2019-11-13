@@ -33,3 +33,14 @@
         }
     }
 ```
+
+3) SharedPreference 삭제하기</br>
+```kotlin
+    protected fun clearState(){
+        val pref: SharedPreferences = getSharedPreferences("pref", Activity.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = pref.edit()
+
+        editor.clear()
+        editor.commit()
+    }   
+```
