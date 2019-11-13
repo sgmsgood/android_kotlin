@@ -3,7 +3,7 @@
 
 # 2. SharedPreference
 * SharedPreference </br>
-</t>: 앱 안에서 간단한 데이터를 저장하거나 복원할 때 사용하는 메서드
+</t>: 앱 안에서 간단한 데이터를 저장하거나 복원할 때 사용하는 메서드 </br>
 </t>: 앱 내부에 파일을 하나 만들어서 이 파일 안에서 데이터를 저장 or 복원함
 
 1) SharedPreference 저장하기</br>
