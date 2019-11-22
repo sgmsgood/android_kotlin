@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="10dp">
+
+        <com.opusone.leanon.testcumstomview.MyView
+            android:id="@+id/first"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:padding="10dp"
+            app:BackGround="@drawable/basic_button"
+            app:FontSize="20sp"
+            app:Text="타이베이"
+            app:isShadow="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.opusone.leanon.testcumstomview.MyView
+            android:id="@+id/second"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:padding="10dp"
+            app:BackGround="@drawable/basic_button"
+            app:FontSize="20sp"
+            app:Text="타이베이"
+            app:isKeepshadowMargin="true"
+            app:isShadow="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.opusone.leanon.testcumstomview.MyView
+            android:id="@+id/third"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:padding="10dp"
+            app:BackGround="@drawable/basic_button"
+            app:FontSize="20sp"
+            app:Text="타이베이"
+            app:isKeepshadowMargin="false"
+            app:isShadow="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
