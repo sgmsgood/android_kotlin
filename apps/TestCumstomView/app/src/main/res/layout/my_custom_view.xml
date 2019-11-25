@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.opusone.leanon.testcumstomview.TouchableButton
-        android:id="@+id/testButton"
+        android:id="@+id/OoButtonView"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

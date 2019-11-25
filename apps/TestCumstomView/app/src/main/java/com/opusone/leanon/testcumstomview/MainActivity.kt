@@ -11,9 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("MainActivity", "### difficult")
         super.onCreate(savedInstanceState)
-        Log.d("MainActivity", "### difficult")
         setContentView(R.layout.activity_main)
 
         first.onFlatButtonClickListener = ::onClickButton
@@ -33,6 +31,4 @@ class MainActivity : AppCompatActivity() {
     private fun onClickButton2(view: View) {
         Toast.makeText(this, "Clicked secondBtn", Toast.LENGTH_SHORT).show()
     }
-
-
 }

@@ -5,12 +5,9 @@ import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
-import android.widget.Button
-import android.widget.Toast
+import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
-import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.my_custom_view.view.*
 
 
@@ -38,10 +35,9 @@ class OoFlatButton @JvmOverloads constructor(
     private var isKeepShadowMargin = true
 
     var onFlatButtonClickListener: ((view: View) -> Unit)? = null
+    var onButtonClickListener: OnOoButtonClickListener? = TouchableButton::class.java
 
     private var layoutView: View? = null
-
-//    private var touchableButton: TouchableButton? = null
 
     init {
         layoutView = LayoutInflater.from(context).inflate(R.layout.my_custom_view, this, true)
@@ -51,11 +47,7 @@ class OoFlatButton @JvmOverloads constructor(
 
             parseAttrs(attrsArray)
 
-            var touchableButton = TouchableButton(context, attrs, defStyleAttr)
-
-            touchableButton?.setOnClickListener{
-                showShadow(isShadow)
-            }
+            OoButtonView.onButtonClickListener = ::showShadow
         }
     }
 
@@ -90,7 +82,6 @@ class OoFlatButton @JvmOverloads constructor(
         setButtonAttr()
     }
 
-
     private fun renderShadow() {
         shadow.visibility = if (isShadow) View.VISIBLE else View.GONE
     }
@@ -105,9 +96,9 @@ class OoFlatButton @JvmOverloads constructor(
     }
 
     private fun setButtonAttr() {
-        testButton.text = textString
-        testButton.textSize = floatFontSize
-        testButton.setBackgroundResource(bgButton)
+        OoButtonView.text = textString
+        OoButtonView.textSize = floatFontSize
+        OoButtonView.setBackgroundResource(bgButton)
     }
 
     private fun convertPxToDp(px: Double): Int {
@@ -126,9 +117,9 @@ class OoFlatButton @JvmOverloads constructor(
         val marginPxBottom = convertDpToPx(convertPxToDp((pixelHeight * MARGIN_BOTTOM_RATIO)))
         val marginPxRight = convertDpToPx(convertPxToDp((pixelWidth * MARGIN_RIGHT_RATIO)))
 
-        val layoutParameter = testButton.layoutParams as LayoutParams
+        val layoutParameter = OoButtonView.layoutParams as LayoutParams
         layoutParameter.setMargins(marginPxLeft, marginPxTop, marginPxRight, marginPxBottom)
-        testButton.layoutParams = layoutParameter
+        OoButtonView.layoutParams = layoutParameter
     }
 
 //    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -192,8 +183,7 @@ class OoFlatButton @JvmOverloads constructor(
 
     override fun performClick(): Boolean {
         super.performClick()
-        Log.d(TAG, "##layout null? $layoutView")
-        testButton.setOnClickListener {
+        OoButtonView.setOnClickListener {
             onFlatButtonClickListener?.let {
                 it(this)
                 Log.d(TAG, "##isShadow ACTION_UP: $isShadow")
@@ -218,5 +208,5 @@ class OoFlatButton @JvmOverloads constructor(
         }
     }
 }
-typealias OnGlideCircleButtonClickListener = (v: View) -> Unit
+typealias OnOoButtonClickListener = (v: View) -> Unit
 
