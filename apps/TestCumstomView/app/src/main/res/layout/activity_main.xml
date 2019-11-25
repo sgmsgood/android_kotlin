@@ -14,7 +14,7 @@
         android:gravity="center"
         android:padding="10dp">
 
-        <com.opusone.leanon.testcumstomview.MyView
+        <com.opusone.leanon.testcumstomview.OoFlatButton
             android:id="@+id/first"
             android:layout_width="400dp"
             android:layout_height="400dp"
@@ -22,11 +22,10 @@
             app:BackGround="@drawable/basic_button"
             app:FontSize="20sp"
             app:Text="타이베이"
-            app:isShadow="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.opusone.leanon.testcumstomview.MyView
+        <com.opusone.leanon.testcumstomview.OoFlatButton
             android:id="@+id/second"
             android:layout_width="400dp"
             android:layout_height="400dp"
@@ -39,7 +38,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.opusone.leanon.testcumstomview.MyView
+        <com.opusone.leanon.testcumstomview.OoFlatButton
             android:id="@+id/third"
             android:layout_width="400dp"
             android:layout_height="400dp"

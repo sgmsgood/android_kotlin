@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="MyView">
+    <declare-styleable name="OoFlatButton">
         <attr name="Text" format="reference|string"/>
         <attr name="FontSize" format="reference|dimension" />
         <attr name="FontStyle" format="reference|integer" />
         <attr name="BackGround" format="reference|integer" />
         <attr name="isShadow" format="reference|boolean"/>
-        <attr name="isKeepshadowMargin" format="reference|string"/>
+        <attr name="isKeepshadowMargin" format="reference|boolean"/>
 
     </declare-styleable>
 </resources>
