@@ -37,6 +37,7 @@ class OoFlatButton @JvmOverloads constructor(
     private var isProcessingTouchEvent = false
 
     var onFlatButtonClickListener: ((view: View) -> Unit)? = null
+    var onButtonClickListener: OnOoButtonClickListener? = null
 
     private var layoutView: View? = null
 
@@ -71,7 +72,6 @@ class OoFlatButton @JvmOverloads constructor(
         renderShadowMargin()
         setButtonAttr()
     }
-
     private fun parseAttrs(attrsArray: TypedArray) {
         textString = attrsArray.getString(R.styleable.OoFlatButton_Text) ?: ""
 
@@ -92,7 +92,6 @@ class OoFlatButton @JvmOverloads constructor(
         isKeepShadowMargin =
             attrsArray.getBoolean(R.styleable.OoFlatButton_isKeepshadowMargin, true)
     }
-
 
     private fun renderShadow() {
         if (isProcessingTouchEvent) {
@@ -130,20 +129,14 @@ class OoFlatButton @JvmOverloads constructor(
     private fun setMargin(pixelWidth: Int, pixelHeight: Int) {
 //        val marginWidth = pixelWidth-(pixelWidth * 0.95)
 
-//        val marginPxLeft = convertDpToPx(convertPxToDp((pixelWidth * MARGIN_LEFT_RATIO)))
+        val marginPxLeft = convertDpToPx(convertPxToDp((pixelWidth * MARGIN_LEFT_RATIO)))
 //        val marginPxLeft = (marginWidth / 2).toInt()
-//        val marginPxTop = convertDpToPx(convertPxToDp((pixelHeight * MARGIN_TOP_RATIO)))
-//        val marginPxBottom = convertDpToPx(convertPxToDp((pixelHeight * MARGIN_BOTTOM_RATIO)))
+        val marginPxTop = convertDpToPx(convertPxToDp((pixelHeight * MARGIN_TOP_RATIO)))
+        val marginPxBottom = convertDpToPx(convertPxToDp((pixelHeight * MARGIN_BOTTOM_RATIO)))
 //        val marginPxRight =(marginWidth / 2).toInt()
-//        val marginPxRight = convertDpToPx(convertPxToDp((pixelWidth * MARGIN_RIGHT_RATIO)))
+        val marginPxRight = convertDpToPx(convertPxToDp((pixelWidth * MARGIN_RIGHT_RATIO)))
 
         val ldx = pixelHeight * 0.04
-
-        val marginPxTop = convertDpToPx(convertPxToDp(ldx))
-        val marginPxLeft = convertDpToPx(convertPxToDp(ldx * 2.5))
-        val marginPxBottom = convertDpToPx(convertPxToDp(ldx * 4.5))
-        val marginPxRight = convertDpToPx(convertPxToDp(ldx * 2.5))
-
 
         val layoutParameter = innerButton.layoutParams as LayoutParams
         layoutParameter.setMargins(marginPxLeft, marginPxTop, marginPxRight, marginPxBottom)
@@ -168,4 +161,6 @@ class OoFlatButton @JvmOverloads constructor(
         }
     }
 }
+typealias OnOoButtonClickListener = (v: View) -> Unit
+
 

@@ -8,11 +8,11 @@ import android.view.View
 import android.widget.Button
 
 class TouchableButton @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : Button(context, attrs, defStyleAttr) {
     private val TAG = "TouchableButton"
-
-//    private var touchableButton: OnOoButtonClickListener? = null
 
     var onShadowListener: OnShadowListener? = null
     var onButtonClickListener: OnPerformListener? = null
@@ -26,6 +26,7 @@ class TouchableButton @JvmOverloads constructor(
             MotionEvent.ACTION_DOWN -> {
                 touchStayed = false
                 showShadow(false)
+
             }
 
             MotionEvent.ACTION_UP -> {
@@ -65,3 +66,4 @@ class TouchableButton @JvmOverloads constructor(
 
 typealias OnShadowListener = (Boolean) -> Unit
 typealias OnPerformListener = (view: View) -> Unit
+
