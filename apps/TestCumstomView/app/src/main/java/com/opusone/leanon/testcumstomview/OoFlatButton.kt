@@ -5,12 +5,8 @@ import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
-import android.widget.Button
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.my_custom_view.view.*
 
 
@@ -31,17 +27,23 @@ class OoFlatButton @JvmOverloads constructor(
     private var pixelHeight = 0
 
     private var textString = ""
+    private var textColor = R.color.selector_button_text
     private var floatFontSize = 0.0f
     private var bgButton = 0
 
     private var isShadow = true
     private var isKeepShadowMargin = true
 
+    private var isProcessingTouchEvent = false
+
     var onFlatButtonClickListener: ((view: View) -> Unit)? = null
 
     private var layoutView: View? = null
 
-//    private var touchableButton: TouchableButton? = null
+    var onClickListener: ((view: View) -> Unit) ? = null
+        set(newValue) {
+            innerButton.onButtonClickListener = newValue
+        }
 
     init {
         layoutView = LayoutInflater.from(context).inflate(R.layout.my_custom_view, this, true)
@@ -51,27 +53,8 @@ class OoFlatButton @JvmOverloads constructor(
 
             parseAttrs(attrsArray)
 
-            var touchableButton = TouchableButton(context, attrs, defStyleAttr)
-
-            touchableButton?.setOnClickListener{
-                showShadow(isShadow)
-            }
+            innerButton.onShadowListener = ::showShadow
         }
-    }
-
-    private fun parseAttrs(attrsArray: TypedArray) {
-        textString = attrsArray.getString(R.styleable.OoFlatButton_Text) ?: ""
-
-        floatFontSize =
-            attrsArray.getDimensionPixelSize(R.styleable.OoFlatButton_FontSize, 0).toFloat()
-
-        bgButton =
-            attrsArray.getResourceId(R.styleable.OoFlatButton_BackGround, R.drawable.basic_button)
-
-        isShadow = attrsArray.getBoolean(R.styleable.OoFlatButton_isShadow, true)
-
-        isKeepShadowMargin =
-            attrsArray.getBoolean(R.styleable.OoFlatButton_isKeepshadowMargin, true)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -83,15 +66,38 @@ class OoFlatButton @JvmOverloads constructor(
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
-        Log.d(TAG, "##changed: $changed")
 
         renderShadow()
         renderShadowMargin()
         setButtonAttr()
     }
 
+    private fun parseAttrs(attrsArray: TypedArray) {
+        textString = attrsArray.getString(R.styleable.OoFlatButton_Text) ?: ""
+
+        floatFontSize =
+            attrsArray.getDimensionPixelSize(R.styleable.OoFlatButton_FontSize, 0).toFloat()
+
+        bgButton =
+            attrsArray.getResourceId(R.styleable.OoFlatButton_BackGround, R.drawable.basic_button)
+
+        textColor =
+            attrsArray.getResourceId(
+                R.styleable.OoFlatButton_TextColor,
+                R.color.selector_button_text
+            )
+
+        isShadow = attrsArray.getBoolean(R.styleable.OoFlatButton_isShadow, true)
+
+        isKeepShadowMargin =
+            attrsArray.getBoolean(R.styleable.OoFlatButton_isKeepshadowMargin, true)
+    }
+
 
     private fun renderShadow() {
+        if (isProcessingTouchEvent) {
+            return
+        }
         shadow.visibility = if (isShadow) View.VISIBLE else View.GONE
     }
 
@@ -105,9 +111,10 @@ class OoFlatButton @JvmOverloads constructor(
     }
 
     private fun setButtonAttr() {
-        testButton.text = textString
-        testButton.textSize = floatFontSize
-        testButton.setBackgroundResource(bgButton)
+        innerButton.text = textString
+        innerButton.textSize = floatFontSize
+        innerButton.setBackgroundResource(bgButton)
+        innerButton.setTextColor(resources.getColorStateList(R.color.selector_button_text, null))
     }
 
     private fun convertPxToDp(px: Double): Int {
@@ -121,86 +128,26 @@ class OoFlatButton @JvmOverloads constructor(
     }
 
     private fun setMargin(pixelWidth: Int, pixelHeight: Int) {
-        val marginPxLeft = convertDpToPx(convertPxToDp((pixelWidth * MARGIN_LEFT_RATIO)))
-        val marginPxTop = convertDpToPx(convertPxToDp((pixelHeight * MARGIN_TOP_RATIO)))
-        val marginPxBottom = convertDpToPx(convertPxToDp((pixelHeight * MARGIN_BOTTOM_RATIO)))
-        val marginPxRight = convertDpToPx(convertPxToDp((pixelWidth * MARGIN_RIGHT_RATIO)))
+//        val marginWidth = pixelWidth-(pixelWidth * 0.95)
 
-        val layoutParameter = testButton.layoutParams as LayoutParams
+//        val marginPxLeft = convertDpToPx(convertPxToDp((pixelWidth * MARGIN_LEFT_RATIO)))
+//        val marginPxLeft = (marginWidth / 2).toInt()
+//        val marginPxTop = convertDpToPx(convertPxToDp((pixelHeight * MARGIN_TOP_RATIO)))
+//        val marginPxBottom = convertDpToPx(convertPxToDp((pixelHeight * MARGIN_BOTTOM_RATIO)))
+//        val marginPxRight =(marginWidth / 2).toInt()
+//        val marginPxRight = convertDpToPx(convertPxToDp((pixelWidth * MARGIN_RIGHT_RATIO)))
+
+        val ldx = pixelHeight * 0.04
+
+        val marginPxTop = convertDpToPx(convertPxToDp(ldx))
+        val marginPxLeft = convertDpToPx(convertPxToDp(ldx * 2.5))
+        val marginPxBottom = convertDpToPx(convertPxToDp(ldx * 4.5))
+        val marginPxRight = convertDpToPx(convertPxToDp(ldx * 2.5))
+
+
+        val layoutParameter = innerButton.layoutParams as LayoutParams
         layoutParameter.setMargins(marginPxLeft, marginPxTop, marginPxRight, marginPxBottom)
-        testButton.layoutParams = layoutParameter
-    }
-
-//    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-//        val action: Int = ev!!.action
-//        Log.d(TAG, "##action value: $action")
-//
-//        Log.d(TAG, "##DOWN: ${MotionEvent.ACTION_DOWN}")
-//
-//        when (action) {
-//            MotionEvent.ACTION_DOWN -> {
-//                if (isShadow) {
-//                    Log.d(TAG, "##shadow down: $shadow")
-//                    shadow.visibility = View.INVISIBLE
-//                }
-//                return true
-//                isShadow = false
-//               checkingChangeRenderShadow()
-//            }
-//
-//            MotionEvent.ACTION_UP -> {
-//                if (isShadow) {
-//                    Log.d(TAG, "##shadow down: $shadow")
-//                    shadow.visibility = View.INVISIBLE
-//                }
-//                return true
-//            }
-//
-//            MotionEvent.ACTION_UP -> {
-//                performClick()
-//
-//            }
-//
-//        }
-//        return super.dispatchTouchEvent(ev)
-//    }
-
-//    override fun onTouchEvent(event: MotionEvent?): Boolean {
-//        when(event?.action){
-//            MotionEvent.ACTION_DOWN -> {
-//                if(isShadow){
-//                    Log.d(TAG, "##shadow down: $shadow")
-//                    shadow.visibility = View.INVISIBLE
-//                }
-//                return true
-//            }
-//
-//
-//            MotionEvent.ACTION_UP ->{
-//                if(isShadow){
-//                    Log.d(TAG, "##shadow up: $shadow")
-//                    shadow.visibility = View.VISIBLE
-//                }
-//                return true
-//            }
-//
-//
-//        }
-//
-//        return super.onTouchEvent(event)
-//    }
-
-    override fun performClick(): Boolean {
-        super.performClick()
-        Log.d(TAG, "##layout null? $layoutView")
-        testButton.setOnClickListener {
-            onFlatButtonClickListener?.let {
-                it(this)
-                Log.d(TAG, "##isShadow ACTION_UP: $isShadow")
-            }
-        }
-
-        return true
+        innerButton.layoutParams = layoutParameter
     }
 
     private fun showShadow(isShow: Boolean) {
@@ -209,14 +156,16 @@ class OoFlatButton @JvmOverloads constructor(
             return
         }
 
-        if(isShow){
-
+        if (isShow) {
             shadow.visibility = View.VISIBLE
-        } else {
+            isProcessingTouchEvent = false
 
+
+        } else {
+            isProcessingTouchEvent = true
             shadow.visibility = View.INVISIBLE
+
         }
     }
 }
-typealias OnGlideCircleButtonClickListener = (v: View) -> Unit
 

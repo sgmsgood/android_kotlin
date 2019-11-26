@@ -3,10 +3,11 @@
     <declare-styleable name="OoFlatButton">
         <attr name="Text" format="reference|string"/>
         <attr name="FontSize" format="reference|dimension" />
-        <attr name="FontStyle" format="reference|integer" />
+        <attr name="TextColor" format="reference|integer" />
         <attr name="BackGround" format="reference|integer" />
         <attr name="isShadow" format="reference|boolean"/>
         <attr name="isKeepshadowMargin" format="reference|boolean"/>
+        <attr name="shadowDrawable" format="reference|integer"/>
 
     </declare-styleable>
 </resources>

@@ -12,12 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="false"
-        android:background="@drawable/rectangle_shadow"
+        android:background="@drawable/square_button_shadow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.opusone.leanon.testcumstomview.TouchableButton
-        android:id="@+id/testButton"
+        android:id="@+id/innerButton"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

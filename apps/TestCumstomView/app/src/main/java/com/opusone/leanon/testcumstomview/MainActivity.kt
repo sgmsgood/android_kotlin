@@ -16,14 +16,10 @@ class MainActivity : AppCompatActivity() {
         Log.d("MainActivity", "### difficult")
         setContentView(R.layout.activity_main)
 
-        first.onFlatButtonClickListener = ::onClickButton
+        first.onClickListener = ::onClickButton
 
-        second.onFlatButtonClickListener = ::onClickButton2
+        second.onClickListener = ::onClickButton2
 
-        third.setOnClickListener {
-            Toast.makeText(this, "Clicked thirdBtn", Toast.LENGTH_SHORT).show()
-            Log.d("MainActivity", "### plzzzz")
-        }
     }
 
     private fun onClickButton(view: View) {
