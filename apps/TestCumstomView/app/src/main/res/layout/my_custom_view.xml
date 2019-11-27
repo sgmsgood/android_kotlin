@@ -12,9 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="false"
-        android:background="@drawable/square_button_shadow"
+        android:background="@drawable/square_button_shadow_nine"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.opusone.leanon.testcumstomview.TouchableButton
         android:id="@+id/innerButton"
@@ -23,6 +25,7 @@
         android:layout_height="match_parent"
         android:textAllCaps="false"
         android:textColor="#ffffff"
+        android:text="업데이트"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

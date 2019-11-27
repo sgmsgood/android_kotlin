@@ -11,48 +11,33 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
-        android:padding="100dp">
+        android:gravity="center">
 
         <com.opusone.leanon.testcumstomview.OoFlatButton
             android:id="@+id/first"
-            android:layout_width="748dp"
-            android:layout_height="136dp"
-            android:padding="10dp"
-            android:layout_marginEnd="30dp"
-            android:drawableLeft="@drawable/center_icon"
-            app:BackGround="@drawable/basic_button"
-            app:isKeepshadowMargin="true"
-            app:isShadow="true"
-            app:FontSize="20sp"
-            app:TextColor="@color/selector_button_text"
-            app:Text="타이베이"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/third"
-            android:layout_width="748dp"
-            android:layout_height="136dp"
-            android:padding="10dp"
-            android:scaleType="fitXY"
-            android:layout_marginEnd="30dp"
-            android:src="@drawable/square_button_shadow2"
+            android:layout_width="151dp"
+            android:layout_height="151dp"
+            app:BackGround="@drawable/laucher_pop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.opusone.leanon.testcumstomview.OoFlatButton
             android:id="@+id/second"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:padding="10dp"
+            android:layout_width="1200dp"
+            android:layout_height="151dp"
+            android:background="#ffff00"
             app:BackGround="@drawable/basic_button"
-            app:FontSize="20sp"
-            app:Text="타이베이"
-            app:isKeepshadowMargin="true"
-            app:isShadow="true"
+            app:Text="업데이트를 타이틀로"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="1200dp"
+            android:layout_height="151dp"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/square_button_shadow_nine"
+            />
 
     </LinearLayout>
 

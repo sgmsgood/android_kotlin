@@ -23,6 +23,8 @@ class OoFlatButton @JvmOverloads constructor(
     private val MARGIN_BOTTOM_RATIO = 0.2
     private val MARGIN_RIGHT_RATIO = 0.02
 
+    private val MARGIN_RATIO = 0.1
+
     private var pixelWidth = 0
     private var pixelHeight = 0
 
@@ -37,7 +39,6 @@ class OoFlatButton @JvmOverloads constructor(
     private var isProcessingTouchEvent = false
 
     var onFlatButtonClickListener: ((view: View) -> Unit)? = null
-    var onButtonClickListener: OnOoButtonClickListener? = null
 
     private var layoutView: View? = null
 
@@ -72,6 +73,7 @@ class OoFlatButton @JvmOverloads constructor(
         renderShadowMargin()
         setButtonAttr()
     }
+
     private fun parseAttrs(attrsArray: TypedArray) {
         textString = attrsArray.getString(R.styleable.OoFlatButton_Text) ?: ""
 
@@ -92,6 +94,7 @@ class OoFlatButton @JvmOverloads constructor(
         isKeepShadowMargin =
             attrsArray.getBoolean(R.styleable.OoFlatButton_isKeepshadowMargin, true)
     }
+
 
     private fun renderShadow() {
         if (isProcessingTouchEvent) {
@@ -136,10 +139,21 @@ class OoFlatButton @JvmOverloads constructor(
 //        val marginPxRight =(marginWidth / 2).toInt()
         val marginPxRight = convertDpToPx(convertPxToDp((pixelWidth * MARGIN_RIGHT_RATIO)))
 
-        val ldx = pixelHeight * 0.04
+//
+//        val ldxHeight = pixelHeight * 0.1
+//        val ldxWidth = pixelWidth * 0.1
+//
+//        val marginPxTop = ldxHeight.toInt()
+//        val marginPxLeft = ldxWidth.toInt()
+//        val marginPxBottom = ldxHeight.toInt()
+//        val marginPxRight = ldxWidth.toInt()
+
+//        val marginPxWidth = convertDpToPx(convertPxToDp((pixelWidth * MARGIN_RATIO)))
+//        val marginPxHeight = convertDpToPx(convertPxToDp((pixelHeight* MARGIN_RATIO)))
 
         val layoutParameter = innerButton.layoutParams as LayoutParams
         layoutParameter.setMargins(marginPxLeft, marginPxTop, marginPxRight, marginPxBottom)
+//        layoutParameter.setMargins(marginPxWidth, marginPxHeight, marginPxWidth, marginPxHeight)
         innerButton.layoutParams = layoutParameter
     }
 
@@ -161,6 +175,4 @@ class OoFlatButton @JvmOverloads constructor(
         }
     }
 }
-typealias OnOoButtonClickListener = (v: View) -> Unit
-
 
