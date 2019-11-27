@@ -8,7 +8,7 @@
 </t>- 유사한 view를 재활용 함으로써 레이아웃을 구현하는데 효율성 향상 </br>
 
 3. customView 만드는 법</br>
-</t>1) MainActivity 외에 customView를 구성할 Activity를 생성</br>
+</t>1) View 클래스를 상속받는 새로운 클래스 생성하기</br>
 </t>2) res 폴더에 attr (attribute) 파일 생성</br>
 </t>3) 이곳에서 생성한 name 값으로 view의 요소를 custom하게 설정할 수 있음</br>
 </t>4) mainActivity에 구현</br>
