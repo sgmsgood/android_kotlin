@@ -10,7 +10,7 @@
 3. customView 만드는 법</br>
 </t>1) View 클래스를 상속받는 새로운 클래스 생성하기</br>
 </t>2) res 폴더에 attr (attribute) 파일 생성</br>
-</t>:이곳에서 생성한 name 값으로 view의 요소를 custom하게 설정할 수 있음</br>
+</t>: 이곳에서 생성한 name 값으로 view의 요소를 custom하게 설정할 수 있음</br>
 </t>3) mainActivity에 구현</br>
 
 4. 문제가 되었던 부분</br>
