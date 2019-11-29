@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="false"
+        android:textSize="30sp"
         android:background="@drawable/square_button_shadow_nine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,8 +25,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:text="업데이트"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

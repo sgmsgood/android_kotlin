@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TestCumstomView</string>
+    <string name="textString">업데이트를 하세요.</string>
 </resources>
