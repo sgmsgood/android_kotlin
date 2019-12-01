@@ -19,11 +19,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onClickButton(view: View) {
-        Toast.makeText(this, "Clicked firstBtn", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Clicked first Btn", Toast.LENGTH_SHORT).show()
     }
 
     private fun onClickButton2(view: View) {
-        Toast.makeText(this, "Clicked secondBtn", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Clicked second Btn", Toast.LENGTH_SHORT).show()
     }
 
 

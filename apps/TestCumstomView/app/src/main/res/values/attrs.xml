@@ -8,6 +8,6 @@
         <attr name="isShadow" format="reference|boolean"/>
         <attr name="isKeepshadowMargin" format="reference|boolean"/>
         <attr name="shadowDrawable" format="reference|integer"/>
-
+        <attr name="iconImage" format="reference|integer"/>
     </declare-styleable>
 </resources>

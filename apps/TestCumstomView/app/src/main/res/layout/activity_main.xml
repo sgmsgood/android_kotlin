@@ -13,40 +13,35 @@
         android:orientation="vertical"
         android:gravity="center">
 
-<!--        <com.opusone.leanon.testcumstomview.OoFlatButton-->
-<!--            android:id="@+id/first"-->
-<!--            android:layout_width="256dp"-->
-<!--            android:layout_height="256dp"-->
-<!--            app:BackGround="@drawable/laucher_pop"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
         <com.opusone.leanon.testcumstomview.OoFlatButton
             android:id="@+id/second"
-            android:layout_width="256dp"
-            android:layout_height="400dp"
-            app:Text="도레미"
-            app:FontSize="20sp"
+            android:layout_width="187dp"
+            android:layout_height="185dp"
+            app:iconImage="@drawable/poweroff_icon"
+            app:Text="린온종료"
+            app:FontSize="30sp"
             app:BackGround="@drawable/basic_button"
-            app:TextColor="@color/selector_button_text"
+            app:TextColor="@color/selector_button_text_black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:layout_width="256dp"
-            android:layout_height="400dp"
-            android:text="도레미"
-            android:textSize="40sp"/>
+        <!--<Button
+            android:id="@+id/third"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="211dp"료
+            android:layout_height="90dp"
+            android:text="즐거운 생활"
+            android:textColor="@color/selector_button_text" />-->
 
-     <!--   <com.opusone.leanon.testcumstomview.OoFlatButton
+        <!--<com.opusone.leanon.testcumstomview.OoFlatButton
             android:id="@+id/third"
             android:layout_width="136dp"
             android:layout_height="300dp"
             app:BackGround="@drawable/basic_button"
             app:TextColor="@color/selector_button_text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />-->
-
+            app:layout_constraintTop_toTopOf="parent" />
+-->
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

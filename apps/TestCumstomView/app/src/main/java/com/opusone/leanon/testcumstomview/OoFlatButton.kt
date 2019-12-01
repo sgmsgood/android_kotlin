@@ -3,11 +3,11 @@ package com.opusone.leanon.testcumstomview
 import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.my_custom_view.view.*
 
 
@@ -31,8 +31,9 @@ class OoFlatButton @JvmOverloads constructor(
 
     private var textString = ""
     private var textColor = R.color.selector_button_text
-    private var floatFontSize = 0f
+    private var fontSize = 0
     private var bgButton = 0
+    private var iconImage = 0
 
     private var isShadow = true
     private var isKeepShadowMargin = true
@@ -78,8 +79,7 @@ class OoFlatButton @JvmOverloads constructor(
     private fun parseAttrs(attrsArray: TypedArray) {
         textString = attrsArray.getString(R.styleable.OoFlatButton_Text) ?: ""
 
-        floatFontSize =
-            attrsArray.getDimensionPixelSize(R.styleable.OoFlatButton_FontSize, 15).toFloat()
+        fontSize = attrsArray.getDimensionPixelSize(R.styleable.OoFlatButton_FontSize, 21)
 
         bgButton =
             attrsArray.getResourceId(R.styleable.OoFlatButton_BackGround, R.drawable.basic_button)
@@ -94,8 +94,23 @@ class OoFlatButton @JvmOverloads constructor(
 
         isKeepShadowMargin =
             attrsArray.getBoolean(R.styleable.OoFlatButton_isKeepshadowMargin, true)
+
+        iconImage = attrsArray.getResourceId(R.styleable.OoFlatButton_iconImage, 0)
     }
 
+    private fun convertSpToPx(pxFontSize: Int): Float{
+        return pxFontSize/resources.displayMetrics.scaledDensity
+    }
+
+    private fun convertPxToDp(px: Int): Double{
+        val displayMetrics = context.resources.displayMetrics
+        return (px / displayMetrics.density).toDouble()
+    }
+
+    private fun convertDpToPx(dp: Int): Double {
+        val displayMetrics = context.resources.displayMetrics
+        return (dp * displayMetrics.density).toDouble()
+    }
 
     private fun renderShadow() {
         if (isProcessingTouchEvent) {
@@ -115,9 +130,28 @@ class OoFlatButton @JvmOverloads constructor(
 
     private fun setButtonAttr() {
         innerButton.text = textString
-        innerButton.textSize = floatFontSize
+        innerButton.textSize = convertSpToPx(fontSize)
         innerButton.setBackgroundResource(bgButton)
-        innerButton.setTextColor(resources.getColorStateList(R.color.selector_button_text, null))
+        innerButton.setTextColor(resources.getColorStateList(textColor, null))
+
+//        val image = context.resources.getDrawable(iconImage, null)
+//        image.setBounds(0, 0, (pixelWidth * 0.2).toInt(), (pixelHeight *  0.48).toInt())
+//        innerButton.setCompoundDrawables(image, null, null, null)
+//
+        val image = context.resources.getDrawable(iconImage, null)
+        val dpImageWidth = convertPxToDp(image.intrinsicWidth)/convertPxToDp(pixelWidth)
+        val dpImageHeight = convertPxToDp(image.intrinsicHeight)/convertPxToDp(pixelHeight)
+
+        val dp = convertPxToDp(dpImageHeight.toInt())
+
+        val textWidth = fontSize * (textString.length+1)
+
+        val margineLeftValue = ((pixelWidth - (image.intrinsicWidth + textWidth)) / 2)
+        val margineTopValue = ((pixelWidth - (image.intrinsicWidth+fontSize))/2)
+
+        image.setBounds(0, 0, (pixelWidth * dpImageWidth).toInt(), (pixelHeight *  dpImageHeight).toInt())
+        innerButton.setCompoundDrawables(null, image, null, null)
+        innerButton.setPadding(0, margineTopValue, 0, 0)
     }
 
     private fun getSquareTypeMargin(pixelWidth: Int, pixelHeight: Int) {
@@ -126,10 +160,17 @@ class OoFlatButton @JvmOverloads constructor(
         if (size.first - size.second > 0) {
             size = Pair(pixelHeight, pixelWidth)
         }
-        val sizeRatio = size.second / size.first
 
-        val marginPx = (size.first * MARGIN_RATIO * sizeRatio).toInt()
-        setMargin(marginPx, marginPx, marginPx, marginPx)
+        try {
+            var sizeRatio = size.second / size.first
+
+            val marginPx = (size.first * MARGIN_RATIO * sizeRatio).toInt()
+            setMargin(marginPx, marginPx, marginPx, marginPx)
+
+        }catch (e: ArithmeticException){
+            e.printStackTrace()
+        }
+
     }
 
     private fun setMargin(marginPxLeft: Int, marginPxTop: Int, marginPxRight: Int, marginPxBottom: Int) {
