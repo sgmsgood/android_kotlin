@@ -33,6 +33,8 @@ class OoFlatButton @JvmOverloads constructor(
     private var textColor = R.color.selector_button_text
     private var fontSize = 0
     private var bgButton = 0
+
+    private var iconPosition = ""
     private var iconImage = 0
 
     private var isShadow = true
@@ -76,6 +78,7 @@ class OoFlatButton @JvmOverloads constructor(
         setButtonAttr()
         renderShadow()
         renderShadowMargin()
+        setIconImage()
     }
 
     private fun parseAttrs(attrsArray: TypedArray) {
@@ -96,6 +99,8 @@ class OoFlatButton @JvmOverloads constructor(
 
         isKeepShadowMargin =
             attrsArray.getBoolean(R.styleable.OoFlatButton_isKeepshadowMargin, true)
+
+        iconPosition = attrsArray.getString(R.styleable.OoFlatButton_iconPosition) ?: ""
 
         iconImage = attrsArray.getResourceId(R.styleable.OoFlatButton_iconImage, 0)
     }
@@ -135,25 +140,49 @@ class OoFlatButton @JvmOverloads constructor(
         innerButton.textSize = convertSpToPx(fontSize)
         innerButton.setBackgroundResource(bgButton)
         innerButton.setTextColor(resources.getColorStateList(textColor, null))
-    
-//        val image = context.resources.getDrawable(iconImage, null)
-//        image.setBounds(0, 0, (pixelWidth * 0.2).toInt(), (pixelHeight *  0.48).toInt())
-//        innerButton.setCompoundDrawables(image, null, null, null)
-//
+    }
+
+    private fun setIconImage(){
         val image = context.resources.getDrawable(iconImage, null)
         val dpImageWidth = convertPxToDp(image.intrinsicWidth)/convertPxToDp(pixelWidth)
         val dpImageHeight = convertPxToDp(image.intrinsicHeight)/convertPxToDp(pixelHeight)
 
+        val textWidth = fontSize * (textString.length)
+
+
+        when(iconPosition){
+            "top" ->{
+                val buttonHeight = pixelHeight - getSquareTypeMargin(pixelWidth, pixelHeight) * 2
+                val buttonImageAndTextSumHeight = image.intrinsicHeight + fontSize
+
+                val topMarginValue = ((buttonHeight - buttonImageAndTextSumHeight) / 2)
+
+                val iconWidth = (pixelWidth * dpImageWidth).toInt()
+                image.setBounds(0, 0, iconWidth, (pixelHeight *  dpImageHeight).toInt())
+                innerButton.setCompoundDrawables(null, image, null, null)
+                innerButton.setPadding(0, topMarginValue, 0, 0)
+            }
+            "left" -> {
+                val leftMargin = ((pixelWidth - (image.intrinsicWidth + textWidth)) / 2)
+
+                image.setBounds(0, 0, (pixelWidth * (dpImageWidth)).toInt(), (pixelHeight *  (dpImageHeight)).toInt())
+                innerButton.setCompoundDrawables(image, null, null, null)
+                innerButton.setPadding(leftMargin, 0, leftMargin.toInt(), 0)
+            }
+
+            "right" -> {
+
+            }
+
+        }
+
+
         val dp = convertPxToDp(dpImageHeight.toInt())
 
-        val textWidth = fontSize * (textString.length+1)
 
-        val margineLeftValue = ((pixelWidth - (image.intrinsicWidth + textWidth)) / 2)
-        val margineTopValue = ((pixelHeight - getSquareTypeMargin(pixelWidth, pixelHeight)*2 -(image.intrinsicWidth+fontSize))/2)
 
-        image.setBounds(0, 0, (pixelWidth * dpImageWidth).toInt(), (pixelHeight *  dpImageHeight).toInt())
-        innerButton.setCompoundDrawables(null, image, null, null)
-        innerButton.setPadding(0, margineTopValue, 0, 0)
+
+
     }
 
     private fun getSquareTypeMargin(pixelWidth: Int, pixelHeight: Int): Int{
@@ -174,7 +203,6 @@ class OoFlatButton @JvmOverloads constructor(
         }
 
         return marginPx
-
     }
 
     private fun setMargin(marginPxLeft: Int, marginPxTop: Int, marginPxRight: Int, marginPxBottom: Int) {

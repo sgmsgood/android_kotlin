@@ -15,12 +15,13 @@
 
         <com.opusone.leanon.testcumstomview.OoFlatButton
             android:id="@+id/second"
-            android:layout_width="187dp"
-            android:layout_height="185dp"
-            app:iconImage="@drawable/poweroff_icon"
-            app:Text="린온종료"
-            app:FontSize="25sp"
-            app:BackGround="@drawable/basic_button"
+            android:layout_width="300dp"
+            android:layout_height="116dp"
+            app:isKeepshadowMargin="false"
+            app:iconPosition="left"
+            app:iconImage="@drawable/get_phone_icon"
+            app:FontSize="43sp"
+            app:BackGround="@drawable/confirm_button"
             app:TextColor="@color/selector_button_text_black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
