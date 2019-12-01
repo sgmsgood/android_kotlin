@@ -19,7 +19,7 @@
             android:layout_height="185dp"
             app:iconImage="@drawable/poweroff_icon"
             app:Text="린온종료"
-            app:FontSize="30sp"
+            app:FontSize="25sp"
             app:BackGround="@drawable/basic_button"
             app:TextColor="@color/selector_button_text_black"
             app:layout_constraintStart_toStartOf="parent"

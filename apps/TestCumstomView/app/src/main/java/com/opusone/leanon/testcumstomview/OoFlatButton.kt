@@ -44,6 +44,8 @@ class OoFlatButton @JvmOverloads constructor(
 
     private var layoutView: View? = null
 
+    var marginPx = 0
+
     var onClickListener: ((view: View) -> Unit)? = null
         set(newValue) {
             innerButton.onButtonClickListener = newValue
@@ -133,7 +135,7 @@ class OoFlatButton @JvmOverloads constructor(
         innerButton.textSize = convertSpToPx(fontSize)
         innerButton.setBackgroundResource(bgButton)
         innerButton.setTextColor(resources.getColorStateList(textColor, null))
-
+    
 //        val image = context.resources.getDrawable(iconImage, null)
 //        image.setBounds(0, 0, (pixelWidth * 0.2).toInt(), (pixelHeight *  0.48).toInt())
 //        innerButton.setCompoundDrawables(image, null, null, null)
@@ -147,14 +149,14 @@ class OoFlatButton @JvmOverloads constructor(
         val textWidth = fontSize * (textString.length+1)
 
         val margineLeftValue = ((pixelWidth - (image.intrinsicWidth + textWidth)) / 2)
-        val margineTopValue = ((pixelWidth - (image.intrinsicWidth+fontSize))/2)
+        val margineTopValue = ((pixelHeight - getSquareTypeMargin(pixelWidth, pixelHeight)*2 -(image.intrinsicWidth+fontSize))/2)
 
         image.setBounds(0, 0, (pixelWidth * dpImageWidth).toInt(), (pixelHeight *  dpImageHeight).toInt())
         innerButton.setCompoundDrawables(null, image, null, null)
         innerButton.setPadding(0, margineTopValue, 0, 0)
     }
 
-    private fun getSquareTypeMargin(pixelWidth: Int, pixelHeight: Int) {
+    private fun getSquareTypeMargin(pixelWidth: Int, pixelHeight: Int): Int{
 
         var size = Pair(pixelWidth, pixelHeight)
         if (size.first - size.second > 0) {
@@ -164,12 +166,14 @@ class OoFlatButton @JvmOverloads constructor(
         try {
             var sizeRatio = size.second / size.first
 
-            val marginPx = (size.first * MARGIN_RATIO * sizeRatio).toInt()
+            marginPx = (size.first * MARGIN_RATIO * sizeRatio).toInt()
             setMargin(marginPx, marginPx, marginPx, marginPx)
 
         }catch (e: ArithmeticException){
             e.printStackTrace()
         }
+
+        return marginPx
 
     }
 
