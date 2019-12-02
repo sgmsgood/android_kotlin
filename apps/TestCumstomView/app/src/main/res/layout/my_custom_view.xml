@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:clickable="false"
         android:textSize="30sp"
-        android:background="@drawable/square_button_shadow_nine"
+        android:background="@drawable/button_shadow_edit_nine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

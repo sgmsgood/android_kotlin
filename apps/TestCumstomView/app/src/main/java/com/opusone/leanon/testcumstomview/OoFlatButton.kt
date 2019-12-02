@@ -24,7 +24,8 @@ class OoFlatButton @JvmOverloads constructor(
     private val MARGIN_BOTTOM_RATIO = 0.2
     private val MARGIN_RIGHT_RATIO = 0.02
 
-    private val MARGIN_RATIO = 0.12
+//    private val MARGIN_RATIO_HEIGHT = 0.12
+    private val MARGIN_RATIO_WIDTH = 0.613
 
     private var pixelWidth = 0
     private var pixelHeight = 0
@@ -130,8 +131,6 @@ class OoFlatButton @JvmOverloads constructor(
         if (isKeepShadowMargin) {
             getSquareTypeMargin(pixelWidth, pixelHeight)
 
-        } else {
-            getSquareTypeMargin(0, 0)
         }
     }
 
@@ -147,7 +146,7 @@ class OoFlatButton @JvmOverloads constructor(
         val dpImageWidth = convertPxToDp(image.intrinsicWidth)/convertPxToDp(pixelWidth)
         val dpImageHeight = convertPxToDp(image.intrinsicHeight)/convertPxToDp(pixelHeight)
 
-        val textWidth = fontSize * (textString.length)
+        val textWidth = fontSize * (textString.length+1)
 
 
         when(iconPosition){
@@ -160,29 +159,34 @@ class OoFlatButton @JvmOverloads constructor(
                 val iconWidth = (pixelWidth * dpImageWidth).toInt()
                 image.setBounds(0, 0, iconWidth, (pixelHeight *  dpImageHeight).toInt())
                 innerButton.setCompoundDrawables(null, image, null, null)
-                innerButton.setPadding(0, topMarginValue, 0, 0)
+                innerButton.setPadding(0, 0, 0, 0)
             }
             "left" -> {
-                val leftMargin = ((pixelWidth - (image.intrinsicWidth + textWidth)) / 2)
+                val leftMargin = ((pixelWidth - (image.intrinsicWidth+textWidth)) / 2)
 
-                image.setBounds(0, 0, (pixelWidth * (dpImageWidth)).toInt(), (pixelHeight *  (dpImageHeight)).toInt())
+
+                val dpLeftMargin = convertPxToDp(leftMargin).toInt()
+                Log.d(TAG, "##dpLeftMargin: $dpLeftMargin")
+
+                image.setBounds(0, 0, (pixelWidth * (dpImageWidth)).toInt(), (pixelHeight * (dpImageHeight)).toInt())
                 innerButton.setCompoundDrawables(image, null, null, null)
-                innerButton.setPadding(leftMargin, 0, leftMargin.toInt(), 0)
+                innerButton.setPadding(dpLeftMargin, 0, dpLeftMargin, 0)
+
             }
 
             "right" -> {
+                val margin = ((pixelWidth - (image.intrinsicWidth + textWidth))/2)
+                val textArea = (image.intrinsicWidth / pixelWidth).toDouble()
+
+                val dpLeftMargin = convertPxToDp(margin).toInt()
+                Log.d(TAG, "##dpLeftMargin: $dpLeftMargin")
+
+                image.setBounds(0, 0, (pixelWidth * (dpImageWidth)).toInt(), (pixelHeight *  (dpImageHeight)).toInt())
+                innerButton.setCompoundDrawables(null, null, image, null)
+                innerButton.setPadding((pixelWidth * textArea).toInt(), 0, (pixelWidth * textArea).toInt(), 0)
 
             }
-
         }
-
-
-        val dp = convertPxToDp(dpImageHeight.toInt())
-
-
-
-
-
     }
 
     private fun getSquareTypeMargin(pixelWidth: Int, pixelHeight: Int): Int{
@@ -193,10 +197,11 @@ class OoFlatButton @JvmOverloads constructor(
         }
 
         try {
-            var sizeRatio = size.second / size.first
+            var sizeRatio = (size.second.toDouble() / size.first.toDouble())
 
-            marginPx = (size.first * MARGIN_RATIO * sizeRatio).toInt()
-            setMargin(marginPx, marginPx, marginPx, marginPx)
+            var wMarginPx = (size.second * MARGIN_RATIO_WIDTH).toInt()
+            setMargin(wMarginPx, wMarginPx, wMarginPx, wMarginPx)
+
 
         }catch (e: ArithmeticException){
             e.printStackTrace()
@@ -207,7 +212,7 @@ class OoFlatButton @JvmOverloads constructor(
 
     private fun setMargin(marginPxLeft: Int, marginPxTop: Int, marginPxRight: Int, marginPxBottom: Int) {
         val layoutParameter = innerButton.layoutParams as LayoutParams
-        layoutParameter.setMargins(marginPxLeft, marginPxTop, marginPxRight, marginPxBottom)
+        layoutParameter.setMargins(42, 42, 42, 42)
         innerButton.layoutParams = layoutParameter
     }
 
@@ -219,7 +224,7 @@ class OoFlatButton @JvmOverloads constructor(
 
         if (isShow) {
             shadow.visibility = View.VISIBLE
-            isProcessingTouchEvent = false
+             isProcessingTouchEvent = false
 
 
         } else {
