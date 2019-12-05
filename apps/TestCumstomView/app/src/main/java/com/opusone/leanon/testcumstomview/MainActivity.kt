@@ -14,12 +14,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        first.onClickListener = ::onClickButton
-        second.onClickListener = ::onClickButton2
+        all.onClickListener = ::onClickButton
+//        second.onClickListener = ::onClickButton2
     }
 
     private fun onClickButton(view: View) {
-        Toast.makeText(this, "Clicked first Btn", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, LauncherMenu::class.java)
+        startActivity(intent)
+
     }
 
     private fun onClickButton2(view: View) {

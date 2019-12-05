@@ -12,8 +12,6 @@ class TouchableButton @JvmOverloads constructor(
 ) : Button(context, attrs, defStyleAttr) {
     private val TAG = "TouchableButton"
 
-//    private var touchableButton: OnOoButtonClickListener? = null
-
     var onShadowListener: OnShadowListener? = null
     var onButtonClickListener: OnPerformListener? = null
 

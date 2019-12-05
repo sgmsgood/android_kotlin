@@ -2,9 +2,9 @@ package com.opusone.leanon.testcumstomview
 
 import android.content.Context
 import android.content.res.TypedArray
+import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.util.DisplayMetrics
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -19,36 +19,35 @@ class OoFlatButton @JvmOverloads constructor(
 
     private val TAG = "MyView"
 
-    private val MARGIN_LEFT_RATIO = 0.02
-    private val MARGIN_TOP_RATIO = 0.04
-    private val MARGIN_BOTTOM_RATIO = 0.2
-    private val MARGIN_RIGHT_RATIO = 0.02
+    private var layoutView: View? = null
 
-//    private val MARGIN_RATIO_HEIGHT = 0.12
-    private val MARGIN_RATIO_WIDTH = 0.613
+    private val SHADOW_PX_MARGIN = 42
 
     private var pixelWidth = 0
     private var pixelHeight = 0
 
     private var textString = ""
-    private var textColor = R.color.selector_button_text
-    private var fontSize = 0
-    private var bgButton = 0
+    private var textColor = 0
+    private var textSize = 0
+    private var fontStyle = 0
 
-    private var iconPosition = ""
-    private var iconImage = 0
+    private var background = 0
 
     private var isShadow = true
     private var isKeepShadowMargin = true
 
+    private var drawableLeft = 0
+    private var drawableTop = 0
+    private var drawableRight = 0
+    private var drawableBottom = 0
+
+    private var drawablePadding = 0
+    private var btnPaddingLeft = 0
+    private var btnPaddingTop = 0
+    private var btnPaddingRight = 0
+    private var btnPaddingBottom = 0
+
     private var isProcessingTouchEvent = false
-
-    var onFlatButtonClickListener: ((view: View) -> Unit)? = null
-
-    private var layoutView: View? = null
-
-    var marginPx = 0
-
     var onClickListener: ((view: View) -> Unit)? = null
         set(newValue) {
             innerButton.onButtonClickListener = newValue
@@ -79,45 +78,51 @@ class OoFlatButton @JvmOverloads constructor(
         setButtonAttr()
         renderShadow()
         renderShadowMargin()
-        setIconImage()
     }
 
     private fun parseAttrs(attrsArray: TypedArray) {
-        textString = attrsArray.getString(R.styleable.OoFlatButton_Text) ?: ""
-
-        fontSize = attrsArray.getDimensionPixelSize(R.styleable.OoFlatButton_FontSize, 21)
-
-        bgButton =
-            attrsArray.getResourceId(R.styleable.OoFlatButton_BackGround, R.drawable.basic_button)
-
-        textColor =
+        background =
             attrsArray.getResourceId(
-                R.styleable.OoFlatButton_TextColor,
-                R.color.selector_button_text
+                R.styleable.OoFlatButton_oe_backgroundImg,
+                R.drawable.basic_button
             )
 
-        isShadow = attrsArray.getBoolean(R.styleable.OoFlatButton_isShadow, true)
+        parseShadowAttrs(attrsArray)
+        parseDrawableAttrs(attrsArray)
+        parsePaddingAttrs(attrsArray)
+        parseTextAttrs(attrsArray)
+    }
 
+    private fun parseShadowAttrs(attrsArray: TypedArray){
+        isShadow = attrsArray.getBoolean(R.styleable.OoFlatButton_oe_isShadow, true)
         isKeepShadowMargin =
-            attrsArray.getBoolean(R.styleable.OoFlatButton_isKeepshadowMargin, true)
-
-        iconPosition = attrsArray.getString(R.styleable.OoFlatButton_iconPosition) ?: ""
-
-        iconImage = attrsArray.getResourceId(R.styleable.OoFlatButton_iconImage, 0)
+            attrsArray.getBoolean(R.styleable.OoFlatButton_oe_isKeepshadowMargin, true)
     }
 
-    private fun convertSpToPx(pxFontSize: Int): Float{
-        return pxFontSize/resources.displayMetrics.scaledDensity
+    private fun parseTextAttrs(attrsArray: TypedArray){
+        textString = attrsArray.getString(R.styleable.OoFlatButton_oe_text) ?: ""
+        textSize = attrsArray.getDimensionPixelSize(R.styleable.OoFlatButton_oe_textSize, 21)
+        textColor = attrsArray.getResourceId(R.styleable.OoFlatButton_oe_textColor, R.color.selector_button_text)
+        fontStyle = attrsArray.getResourceId(R.styleable.OoFlatButton_oe_fontStyle, R.font.notosans_m)
     }
 
-    private fun convertPxToDp(px: Int): Double{
-        val displayMetrics = context.resources.displayMetrics
-        return (px / displayMetrics.density).toDouble()
+    private fun parseDrawableAttrs(attrsArray: TypedArray){
+        drawableLeft = attrsArray.getResourceId(R.styleable.OoFlatButton_oe_drawableLeft, 0)
+        drawableTop = attrsArray.getResourceId(R.styleable.OoFlatButton_oe_drawableTop, 0)
+        drawableRight = attrsArray.getResourceId(R.styleable.OoFlatButton_oe_drawableRight, 0)
+        drawableBottom = attrsArray.getResourceId(R.styleable.OoFlatButton_oe_drawableBottom, 0)
     }
 
-    private fun convertDpToPx(dp: Int): Double {
-        val displayMetrics = context.resources.displayMetrics
-        return (dp * displayMetrics.density).toDouble()
+    private fun parsePaddingAttrs(attrsArray: TypedArray){
+        drawablePadding = attrsArray.getDimensionPixelSize(R.styleable.OoFlatButton_oe_drawablePadding, 0)
+        btnPaddingLeft =
+            attrsArray.getDimensionPixelSize(R.styleable.OoFlatButton_oe_paddingLeft, 0)
+        btnPaddingTop =
+            attrsArray.getDimensionPixelSize(R.styleable.OoFlatButton_oe_paddingTop, 0)
+        btnPaddingRight =
+            attrsArray.getDimensionPixelSize(R.styleable.OoFlatButton_oe_paddingRight, 0)
+        btnPaddingBottom =
+            attrsArray.getDimensionPixelSize(R.styleable.OoFlatButton_oe_paddingBottom, 0)
     }
 
     private fun renderShadow() {
@@ -129,109 +134,62 @@ class OoFlatButton @JvmOverloads constructor(
 
     private fun renderShadowMargin() {
         if (isKeepShadowMargin) {
-            getSquareTypeMargin(pixelWidth, pixelHeight)
-
+            val layoutParameter = innerButton.layoutParams as LayoutParams
+            layoutParameter.setMargins(
+                SHADOW_PX_MARGIN,
+                SHADOW_PX_MARGIN,
+                SHADOW_PX_MARGIN,
+                SHADOW_PX_MARGIN
+            )
+            innerButton.layoutParams = layoutParameter
         }
     }
 
     private fun setButtonAttr() {
         innerButton.text = textString
-        innerButton.textSize = convertSpToPx(fontSize)
-        innerButton.setBackgroundResource(bgButton)
+        innerButton.textSize = convertSpToPx(textSize)
         innerButton.setTextColor(resources.getColorStateList(textColor, null))
+
+        innerButton.setBackgroundResource(background)
+        innerButton.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, drawableTop, drawableRight, drawableBottom)
+
+        setBtnPadding()
+        setFont()
+        setDrawableIcon()
     }
 
-    private fun setIconImage(){
-        val image = context.resources.getDrawable(iconImage, null)
-        val dpImageWidth = convertPxToDp(image.intrinsicWidth)/convertPxToDp(pixelWidth)
-        val dpImageHeight = convertPxToDp(image.intrinsicHeight)/convertPxToDp(pixelHeight)
-
-        val textWidth = fontSize * (textString.length+1)
-
-
-        when(iconPosition){
-            "top" ->{
-                val buttonHeight = pixelHeight - getSquareTypeMargin(pixelWidth, pixelHeight) * 2
-                val buttonImageAndTextSumHeight = image.intrinsicHeight + fontSize
-
-                val topMarginValue = ((buttonHeight - buttonImageAndTextSumHeight) / 2)
-
-                val iconWidth = (pixelWidth * dpImageWidth).toInt()
-                image.setBounds(0, 0, iconWidth, (pixelHeight *  dpImageHeight).toInt())
-                innerButton.setCompoundDrawables(null, image, null, null)
-                innerButton.setPadding(0, 0, 0, 0)
-            }
-            "left" -> {
-                val leftMargin = ((pixelWidth - (image.intrinsicWidth+textWidth)) / 2)
-
-
-                val dpLeftMargin = convertPxToDp(leftMargin).toInt()
-                Log.d(TAG, "##dpLeftMargin: $dpLeftMargin")
-
-                image.setBounds(0, 0, (pixelWidth * (dpImageWidth)).toInt(), (pixelHeight * (dpImageHeight)).toInt())
-                innerButton.setCompoundDrawables(image, null, null, null)
-                innerButton.setPadding(dpLeftMargin, 0, dpLeftMargin, 0)
-
-            }
-
-            "right" -> {
-                val margin = ((pixelWidth - (image.intrinsicWidth + textWidth))/2)
-                val textArea = (image.intrinsicWidth / pixelWidth).toDouble()
-
-                val dpLeftMargin = convertPxToDp(margin).toInt()
-                Log.d(TAG, "##dpLeftMargin: $dpLeftMargin")
-
-                image.setBounds(0, 0, (pixelWidth * (dpImageWidth)).toInt(), (pixelHeight *  (dpImageHeight)).toInt())
-                innerButton.setCompoundDrawables(null, null, image, null)
-                innerButton.setPadding((pixelWidth * textArea).toInt(), 0, (pixelWidth * textArea).toInt(), 0)
-
-            }
-        }
+    private fun setFont() {
+        var fontType: Typeface = resources.getFont(fontStyle)
+        innerButton.setTypeface(fontType)
     }
 
-    private fun getSquareTypeMargin(pixelWidth: Int, pixelHeight: Int): Int{
-
-        var size = Pair(pixelWidth, pixelHeight)
-        if (size.first - size.second > 0) {
-            size = Pair(pixelHeight, pixelWidth)
-        }
-
-        try {
-            var sizeRatio = (size.second.toDouble() / size.first.toDouble())
-
-            var wMarginPx = (size.second * MARGIN_RATIO_WIDTH).toInt()
-            setMargin(wMarginPx, wMarginPx, wMarginPx, wMarginPx)
-
-
-        }catch (e: ArithmeticException){
-            e.printStackTrace()
-        }
-
-        return marginPx
+    private fun setBtnPadding(){
+        innerButton.setPadding(btnPaddingLeft, btnPaddingTop, btnPaddingRight, btnPaddingBottom)
+        innerButton.compoundDrawablePadding = drawablePadding
     }
 
-    private fun setMargin(marginPxLeft: Int, marginPxTop: Int, marginPxRight: Int, marginPxBottom: Int) {
-        val layoutParameter = innerButton.layoutParams as LayoutParams
-        layoutParameter.setMargins(42, 42, 42, 42)
-        innerButton.layoutParams = layoutParameter
+    private fun setDrawableIcon() {
+
     }
 
     private fun showShadow(isShow: Boolean) {
-        Log.d(TAG, "##isShow: $isShow")
         if (!isShadow) {
             return
         }
 
         if (isShow) {
             shadow.visibility = View.VISIBLE
-             isProcessingTouchEvent = false
-
+            isProcessingTouchEvent = false
 
         } else {
             isProcessingTouchEvent = true
             shadow.visibility = View.INVISIBLE
 
         }
+    }
+
+    private fun convertSpToPx(sp: Int): Float {
+        return sp / resources.displayMetrics.scaledDensity
     }
 }
 
