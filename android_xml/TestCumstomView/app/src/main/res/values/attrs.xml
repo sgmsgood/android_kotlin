@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="OoFlatButton">
+        <!--Text-->
+        <attr name="oe_text" format="reference|string"/>
+        <attr name="oe_textSize" format="reference|dimension" />
+        <attr name="oe_textColor" format="reference|integer" />
+        <attr name="oe_fontStyle" format="reference|integer" />
+
+        <!--button-->
+        <attr name="oe_backgroundImg" format="reference|integer" />
+
+        <!--shadow-->
+        <!--elen: 그림자 표시 여부를 설정합니다. 'false'의 경우에도 margin은 유지됩니다.-->
+        <attr name="oe_isShadow" format="reference|boolean"/>
+        <!--elen: 버튼의 기본 margin(42px) 표시 여부를 설정합니다. 'false'의 경우 margin 값은 0 입니다.-->
+        <attr name="oe_isKeepshadowMargin" format="reference|boolean"/>
+        <attr name="oe_shadowDrawable" format="reference|integer"/>
+
+        <!--icon-->
+        <attr name="oe_drawableLeft" format="reference|color"/>
+        <attr name="oe_drawableTop" format="reference|color"/>
+        <attr name="oe_drawableRight" format="reference|color"/>
+        <attr name="oe_drawableBottom" format="reference|color"/>
+
+        <!--button Padding-->
+        <attr name="oe_drawablePadding" format="reference|dimension"/>
+        <attr name="oe_paddingLeft" format="reference|dimension"/>
+        <attr name="oe_paddingTop" format="reference|dimension"/>
+        <attr name="oe_paddingRight" format="reference|dimension"/>
+        <attr name="oe_paddingBottom" format="reference|dimension"/>
+
+    </declare-styleable>
+</resources>
