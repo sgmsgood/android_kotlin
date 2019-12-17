@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/outputDataLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/calculatorButtonLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1">
+
+        <EditText
+            android:id="@+id/leftInput"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#ff0000"
+            android:inputType="number"
+            android:text="0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/rightInput"
+            app:layout_constraintBottom_toTopOf="@id/resultText"
+            app:layout_constraintVertical_weight="1" />
+
+        <EditText
+            android:id="@+id/rightInput"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#ffff00"
+            android:inputType="number"
+            android:text="0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/leftInput"
+            app:layout_constraintBottom_toTopOf="@id/resultText"
+            app:layout_constraintVertical_weight="1" />
+
+        <TextView
+            android:id="@+id/resultText"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="#00ffff"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/calculatorButtonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/outputDataLayout"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/calButtonLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/clearButton"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:text="C"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/sumButton"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:text="+"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/minusButton"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:text="-"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/multiplyButton"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:text="*"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/divisionButton"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:text="%"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/calButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="cul"
+            app:layout_constraintTop_toBottomOf="@id/calButtonLayout"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
