@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import io.realm.Realm
 import io.realm.Sort
 import io.realm.kotlin.where
+import kotlinx.android.synthetic.main.activity_edit.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import org.jetbrains.anko.startActivity
@@ -45,6 +46,9 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener {
             startActivity<EditActivity>()
         }
+
+        calendarView.setBackgroundResource(R.drawable.add_icon)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -32,7 +32,6 @@ class TodoListAdapter(realmResult: OrderedRealmCollection<Todo>) :
             val item = adapterData!![position]
             viewHolder.textTextView.text = item.title
             viewHolder.dateTextView.text = DateFormat.getTimeInstance(3).format(item.date).toString()
-            Log.d("TodoListAdapter", "##date: ${viewHolder.dateTextView.text} ")
         }
 
         return view
