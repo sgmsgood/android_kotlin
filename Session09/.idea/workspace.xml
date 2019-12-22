@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8583054b-a229-439d-84d8-ce0d8695b293" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1VHx9oRqR6MN2K31YFRalUtu3Qw" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/nine_two_two" />
+      <recent name="$PROJECT_DIR$/src/nine_one_two" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Kotlin.nine_four_two.SuperNSubClassRelationKt">
+    <configuration name="nine_four_one.SmartCastingKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="Session09" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="nine_four_one.SmartCastingKt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="nine_four_two.SuperNSubClassRelationKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="Session09" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="nine_four_two.SuperNSubClassRelationKt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="nine_one_two.OpenKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="Session09" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="nine_one_two.OpenKt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="nine_three_two.ProcessConstructorKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="Session09" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="nine_three_two.ProcessConstructorKt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="nine_two_four.SuperKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="Session09" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="nine_two_four.SuperKt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotlin.nine_four_two.SuperNSubClassRelationKt" />
+        <item itemvalue="Kotlin.nine_four_one.SmartCastingKt" />
+        <item itemvalue="Kotlin.nine_three_two.ProcessConstructorKt" />
+        <item itemvalue="Kotlin.nine_two_four.SuperKt" />
+        <item itemvalue="Kotlin.nine_one_two.OpenKt" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8583054b-a229-439d-84d8-ce0d8695b293" name="Default Changelist" comment="" />
+      <created>1576923672089</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576923672089</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="2838" height="437" key="GridCell.Tab.0.bottom" timestamp="1577005882390">
+      <screen x="0" y="23" width="2880" height="1505" />
+    </state>
+    <state width="2838" height="437" key="GridCell.Tab.0.bottom/0.23.2880.1505@0.23.2880.1505" timestamp="1577005882390" />
+    <state width="2838" height="437" key="GridCell.Tab.0.center" timestamp="1577005882390">
+      <screen x="0" y="23" width="2880" height="1505" />
+    </state>
+    <state width="2838" height="437" key="GridCell.Tab.0.center/0.23.2880.1505@0.23.2880.1505" timestamp="1577005882390" />
+    <state width="2838" height="437" key="GridCell.Tab.0.left" timestamp="1577005882390">
+      <screen x="0" y="23" width="2880" height="1505" />
+    </state>
+    <state width="2838" height="437" key="GridCell.Tab.0.left/0.23.2880.1505@0.23.2880.1505" timestamp="1577005882390" />
+    <state width="2838" height="437" key="GridCell.Tab.0.right" timestamp="1577005882390">
+      <screen x="0" y="23" width="2880" height="1505" />
+    </state>
+    <state width="2838" height="437" key="GridCell.Tab.0.right/0.23.2880.1505@0.23.2880.1505" timestamp="1577005882390" />
+    <state x="1110" y="370" width="670" height="676" key="search.everywhere.popup" timestamp="1576924790440">
+      <screen x="0" y="23" width="2880" height="1505" />
+    </state>
+    <state x="1110" y="370" width="670" height="676" key="search.everywhere.popup/0.23.2880.1505@0.23.2880.1505" timestamp="1576924790440" />
+  </component>
+</project>
