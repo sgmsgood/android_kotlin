@@ -22,7 +22,7 @@ class DriveAdapter(context: Context, var resId: Int, val data: MutableList<Drive
         if(convertView == null){
             val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             inflater.inflate(resId, null)
-            val holder: DriveHolder = DriveHolder(convertView)
+            val holder= DriveHolder(convertView)
             convertView?.setTag(holder)
         }
 

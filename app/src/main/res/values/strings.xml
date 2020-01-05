@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">bloodPressure</string>
+    <string name="mainTitle">혈압계</string>
+    <string name="gettingResultBtn">결과 받아오기</string>
+    <string name="settingBtn">설정</string>
+    <string name="settingTitle">혈압계 연결하기 (OMRON HEM-7280T)</string>
+    <string name="cancelBtn">취소</string>
+    <string name="settingFrist">1.제품 준비</string>
+    <string name="settingSecond">2. 페어링 모드 진입</string>
+    <string name="settingThird">3. 혈압계 검색</string>
+    <string name="settingFourth">4. 연결 확인</string>
+    <string name="mainCheckHour">오전 10:23</string>
+    <string name="mainBloodPressureResult">1단계 고혈압</string>
+    <string name="mainAvgTitle">최근 7일 평균값</string>
+    <string name="bloodPressure">혈압</string>
+    <string name="purse">맥박</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
