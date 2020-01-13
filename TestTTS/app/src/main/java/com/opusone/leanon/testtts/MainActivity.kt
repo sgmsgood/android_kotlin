@@ -3,17 +3,20 @@ package com.opusone.leanon.testtts
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.text.Editable
 import android.util.Log
 import android.widget.SeekBar
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import org.w3c.dom.Text
 import java.util.*
 
-class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener, SeekBar.OnSeekBarChangeListener {
+class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private val TAG = "MainActivity"
 
     lateinit var textToSpeech: TextToSpeech
+    var speed: Float = 0.0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +26,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener, SeekBar.O
 
         textToSpeech = TextToSpeech(applicationContext, this)
 
-        seekBar.progress = 0.5.toInt()
+        seekBar.progress = 5
         initButton()
     }
 
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener, SeekBar.O
                 Speech()
                 playStopBtn.text = "◼︎"
             } else {
+                //재생이 멈췄을 때, "◼︎"로 바뀔 수 있게 구현 필요
                 textToSpeech.stop()
                 playStopBtn.text = "▶︎"
             }
@@ -52,24 +56,29 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener, SeekBar.O
 
             } else {
 
-
-                var speed =  seekBar.progress.toFloat()
-
                 playStopBtn.isEnabled = true
-                textToSpeech.setPitch(1.0f)
-                textToSpeech.setSpeechRate(speed)
 
-                /*normalSpeakBtn.setOnClickListener {
-                    textToSpeech.setSpeechRate(1.0f)
-                }
+                seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+                    override fun onProgressChanged(
+                        seekBar: SeekBar?,
+                        progress: Int,
+                        fromUser: Boolean
+                    ) {
+                        speed = ((seekBar?.progress)?.toFloat()?.div(10.toFloat())) ?: 1.0f
+                        Toast.makeText(applicationContext, "${speed}", Toast.LENGTH_SHORT).show()
 
-                slowSpeakBtn.setOnClickListener {
-                    textToSpeech.setSpeechRate(0.5f)
-                }
+                        setSpeechForm(speed)
+                    }
 
-                fastSpeakBtn.setOnClickListener {
-                    textToSpeech.setSpeechRate(2.0f)
-                }*/
+                    override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+                    }
+
+                    override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+                    }
+
+                })
             }
         }
     }
@@ -90,21 +99,14 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener, SeekBar.O
 
     private fun Speech() {
         val text = editTextView.text.toString()
-
         textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
     }
 
-    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-     
+    private fun setSpeechForm(speed:Float){
+        textToSpeech.setPitch(1.0f)
+        textToSpeech.setSpeechRate(speed)
     }
 
-    override fun onStartTrackingTouch(seekBar: SeekBar?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onStopTrackingTouch(seekBar: SeekBar?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
 
 }
