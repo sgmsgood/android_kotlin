@@ -1,5 +1,6 @@
 package com.opusone.leanon.testtts
 
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -9,6 +10,7 @@ import android.widget.SeekBar
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import org.w3c.dom.Text
+import java.lang.Exception
 import java.util.*
 
 class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
@@ -26,7 +28,6 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         textToSpeech = TextToSpeech(applicationContext, this)
 
-        seekBar.progress = 5
         initButton()
     }
 
@@ -83,6 +84,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
     }
 
+
     override fun onDestroy() {
         super.onDestroy()
 
@@ -100,6 +102,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private fun Speech() {
         val text = editTextView.text.toString()
         textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
+        Waiter().execute()
     }
 
     private fun setSpeechForm(speed:Float){
@@ -107,6 +110,21 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         textToSpeech.setSpeechRate(speed)
     }
 
+    inner class Waiter: AsyncTask<Any, Any, Any>() {
+        override fun doInBackground(vararg params: Any?) {
+            while(textToSpeech.isSpeaking){
+                try{
+                    Thread.sleep(1000)
+                } catch (e: Exception) {
 
+                }
+            }
 
+            return
+        }
+
+        override fun onPostExecute(result: Any?) {
+            playStopBtn.text = "▶︎"
+        }
+    }
 }
