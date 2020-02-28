@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "629214094093",
+    "firebase_url": "https://testcalculator-2bc74.firebaseio.com",
+    "project_id": "testcalculator-2bc74",
+    "storage_bucket": "testcalculator-2bc74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629214094093:android:be1e7b92436df067678644",
+        "android_client_info": {
+          "package_name": "com.opusone.leanon.testcalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "629214094093-ahapq2cacqpkfagb2cljmnfl1sai74ar.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.opusone.leanon.testcalculator",
+            "certificate_hash": "8d46ca63a9451e2b2724503480d9dd320b33da3e"
+          }
+        },
+        {
+          "client_id": "629214094093-r3sfs1iptq0krm8eh4opl6820bu2kjjr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWH3JAzXQilihp0qdos3lhjbAiy8g2iiA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "629214094093-r3sfs1iptq0krm8eh4opl6820bu2kjjr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

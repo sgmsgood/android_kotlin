@@ -106,8 +106,8 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     private fun setSpeechForm(speed:Float){
-        textToSpeech.setPitch(1.0f)
-        textToSpeech.setSpeechRate(speed)
+        textToSpeech.setPitch(5.0f)
+        textToSpeech.setSpeechRate(1.0f)
     }
 
     inner class Waiter: AsyncTask<Any, Any, Any>() {

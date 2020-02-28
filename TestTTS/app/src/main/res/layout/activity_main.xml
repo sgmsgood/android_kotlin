@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom"
-            android:hint="글자를 입력하세요."
+            android:text="중국 신종 코로나바이러스 감염증으로 현재까지 361명이 사망해 지난 2003년 사스 사태 당시 사망자 수를 넘어섰다. 우한 폐렴 발병지인 우한시가 포함된 후베이성에서는 사망자가 하루 만에 56명이 늘었다."
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
