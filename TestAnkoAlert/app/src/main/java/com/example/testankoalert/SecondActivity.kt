@@ -21,7 +21,7 @@ class SecondActivity : AppCompatActivity() {
         }
 
         goToHeaven.setOnClickListener {
-            OoAlertManager.confirm(this, "곤니찌와?", "하"){
+            OoAlertManager.confirm(this, "용이 배 안고파??", "하"){
                 Log.d("MainActivity", "##secondActivity")
             }
         }
